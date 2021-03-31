@@ -1,0 +1,9 @@
+.answer:hover {
+background-color: rgb(190, 185, 185);
+}
+#quiz {
+    display: none;
+}
+.end-game {
+    display: none;
+}

@@ -44,7 +44,7 @@ var answerBtn = document.querySelectorAll(".answer");
 var questionResult = document.querySelector("#question-result")
 var startQuizEl = document.querySelector("#start-quiz");
 var quizEl = document.querySelector("#quiz");
-var endGameEl = document.querySelector("end-game");
+var endGameEl = document.querySelector(".end-game");
 var correctEl = document.querySelector(".correct");
 var wrongEl = document.querySelector(".wrong");
 var scoreEl = document.querySelector("#score");
@@ -57,8 +57,9 @@ function displayQuestion() {
   answerEl2.textContent = questionsArr[currentInd].answer2;
   answerEl3.textContent = questionsArr[currentInd].answer3;
   answerEl4.textContent = questionsArr[currentInd].answer4;
- 
-};
+  if (currentInd > questionsArr.length-1) {
+    endGame();
+}};
 
 function correctAns(){
 
@@ -75,25 +76,24 @@ function wrongAns(){
     displayQuestion();
     wrong++;
     wrongEl.textContent = wrong;
-    timerCount-10;  
+    timerCount-= 10;  
 };
 
 
 
 answerBtn.forEach(function(ansBtn){
-  if (currentInd > questionsArr.length-1) {
-    endGame();
-  } else {
+ 
+  
   ansBtn.addEventListener("click", function(event){
     var userAns = event.target.textContent;
-console.log(userAns);
-if ( userAns === questionsArr[currentInd].correctAnswer){
+ console.log(userAns);
+ if ( userAns === questionsArr[currentInd].correctAnswer){
   correctAns();
-} else {
+ } else {
   wrongAns();
-}
-})
-}});
+ }
+ })
+ });
 
   function startGame() {
     startQuizEl.style.display = "none";
@@ -128,5 +128,3 @@ function startTimer() {
   startBtn.addEventListener("click", function(){
     startGame();
   })
-
-  

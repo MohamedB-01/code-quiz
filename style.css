@@ -18,4 +18,5 @@ background-color: rgb(190, 185, 185);
 #question-result{
     font-size: x-large;
     font-weight: bold;
+    color: red;
 }

@@ -52,31 +52,37 @@ var correct = 0;
 var wrong = 0;
 
 function displayQuestion() {
+  if (currentInd < questionsArr.length){
   questionEl.textContent = questionsArr[currentInd].question;
   answerEl1.textContent = questionsArr[currentInd].answer1;
   answerEl2.textContent = questionsArr[currentInd].answer2;
   answerEl3.textContent = questionsArr[currentInd].answer3;
   answerEl4.textContent = questionsArr[currentInd].answer4;
-  if (currentInd > questionsArr.length-1) {
+  } else{
     endGame();
-}};
+  }
+  ;
+};
 
 function correctAns(){
+  
 
     questionResult.textContent = "correct answer!!";
     currentInd++;
-    displayQuestion();
     correct++;
     correctEl.textContent = correct;
+    displayQuestion();
 };
 
 function wrongAns(){
+  
     questionResult.textContent = "wrong answer!!";
     currentInd++;
-    displayQuestion();
     wrong++;
     wrongEl.textContent = wrong;
-    timerCount-= 10;  
+    timerCount-= 10; 
+    displayQuestion();
+   
 };
 
 
@@ -86,7 +92,6 @@ answerBtn.forEach(function(ansBtn){
   
   ansBtn.addEventListener("click", function(event){
     var userAns = event.target.textContent;
- console.log(userAns);
  if ( userAns === questionsArr[currentInd].correctAnswer){
   correctAns();
  } else {
@@ -110,7 +115,7 @@ function startTimer() {
     timer = setInterval(function() {
       timerCount--;
       timerElement.textContent = timerCount;
-      if (timerCount <= 0) {
+      if (timerCount === 0) {
     
         endGame();
       }
@@ -125,6 +130,4 @@ function startTimer() {
     scoreEl.textContent = "correct : " + correct + ", wrong: " + wrong;
   };
 
-  startBtn.addEventListener("click", function(){
-    startGame();
-  })
+  startBtn.addEventListener("click",startGame);

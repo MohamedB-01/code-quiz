@@ -1,3 +1,5 @@
+
+
 .answer:hover {
 background-color: rgb(190, 185, 185);
 }
@@ -6,4 +8,9 @@ background-color: rgb(190, 185, 185);
 }
 .end-game {
     display: none;
+}
+
+#questions {
+    font-size: x-large;
+    font-weight: bold;
 }

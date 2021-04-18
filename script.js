@@ -1,3 +1,5 @@
+
+//create array of objects for questions, answers and correct answer. 
 var questionsArr = [
   {
     question: "what color is the sky ?",
@@ -32,6 +34,8 @@ var questionsArr = [
     correctAnswer: "red", 
   }
 ];
+
+// add variables in the global scope. 
 var currentInd = 0;
 var timerElement = document.querySelector(".timer-text"); 
 var startBtn = document.querySelector("#start-btn");
@@ -53,6 +57,7 @@ var wrong = 0;
 var saveButton = document.querySelector("#save");
 var intialsEl = document.querySelector("#intials");
 
+// add a function to display questions. 
 function displayQuestion() {
   if (currentInd < questionsArr.length){
   questionEl.textContent = questionsArr[currentInd].question;
@@ -66,9 +71,8 @@ function displayQuestion() {
   ;
 };
 
+// add a fuction for correct answer.
 function correctAns(){
-  
-
     questionResult.textContent = "correct answer!!";
     currentInd++;
     correct++;
@@ -76,6 +80,7 @@ function correctAns(){
     displayQuestion();
 };
 
+// add a function for wrong answer. 
 function wrongAns(){
   
     questionResult.textContent = "wrong answer!!";
@@ -88,10 +93,10 @@ function wrongAns(){
 };
 
 
-
+// a fucntion to loop through questions to check answers
 answerBtn.forEach(function(ansBtn){
  
-  
+  // add an event listner for choosing answers. 
   ansBtn.addEventListener("click", function(event){
     var userAns = event.target.textContent;
  if ( userAns === questionsArr[currentInd].correctAnswer){
@@ -102,6 +107,7 @@ answerBtn.forEach(function(ansBtn){
  })
  });
 
+ // add a function to start game. 
   function startGame() {
     startQuizEl.style.display = "none";
     quizEl.style.display = "block";
@@ -111,7 +117,7 @@ answerBtn.forEach(function(ansBtn){
   };
 
 
-
+// add a function to start timer. 
 function startTimer() {
   
     timer = setInterval(function() {
@@ -124,6 +130,7 @@ function startTimer() {
     }, 1000);
   };
 
+  // add a function to end quiz. 
   function endGame() {
     startQuizEl.style.display = "none";
     quizEl.style.display = "none";
@@ -132,6 +139,7 @@ function startTimer() {
     scoreEl.textContent = "correct : " + correct + ", wrong: " + wrong;
   };
 
+  // add a function to save user's score to local storage. 
   saveButton.addEventListener("click", function(event) {
     event.preventDefault();
     
@@ -146,6 +154,7 @@ function startTimer() {
     
     });
     
+    //add a function to display user's intials and score. 
     function scoreMessage() {
       var lastscore = JSON.parse(localStorage.getItem("UserScore"));
       if (lastscore !== null) {
@@ -153,5 +162,5 @@ function startTimer() {
         " answered  " + correct + " correct and " + wrong + " wrong"
       }
     }
-
+// add an eventlistner to start game. 
   startBtn.addEventListener("click",startGame);

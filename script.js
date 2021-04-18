@@ -50,6 +50,8 @@ var wrongEl = document.querySelector(".wrong");
 var scoreEl = document.querySelector("#score");
 var correct = 0;
 var wrong = 0;
+var saveButton = document.querySelector("#save");
+var intialsEl = document.querySelector("#intials");
 
 function displayQuestion() {
   if (currentInd < questionsArr.length){
@@ -129,5 +131,27 @@ function startTimer() {
     clearInterval(timer);
     scoreEl.textContent = "correct : " + correct + ", wrong: " + wrong;
   };
+
+  saveButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    
+    var UserScore = {
+      intialsEl: intialsEl.value.trim(),
+      correct: correct,
+      wrong: wrong
+    };
+    
+    localStorage.setItem("UserScore", JSON.stringify(UserScore));
+    scoreMessage();
+    
+    });
+    
+    function scoreMessage() {
+      var lastscore = JSON.parse(localStorage.getItem("UserScore"));
+      if (lastscore !== null) {
+        document.querySelector("#saved-score").textContent = intialsEl.value + 
+        " answered  " + correct + " correct and " + wrong + " wrong"
+      }
+    }
 
   startBtn.addEventListener("click",startGame);
